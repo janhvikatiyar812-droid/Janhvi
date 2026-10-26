@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2>AttendEase</h2>
+        <p class="subtitle">Student Portal</p>
+        <nav>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#attendance">Attendance</a>
+            <a href="#students">Students</a>
+        </nav>
+        <p class="side-footer">Smart Attendance System</p>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <h1>Attendance Dashboard</h1>
+                <p>Manage and track student attendance easily.</p>
+            </div>
+            <div class="date-box" id="today"></div>
+        </header>
+
+        <section class="stats" id="dashboard">
+            <div class="stat-card">
+                <span>Total Students</span>
+                <h2 id="totalStudents">4</h2>
+            </div>
+            <div class="stat-card">
+                <span>Present Today</span>
+                <h2 id="presentCount">0</h2>
+            </div>
+            <div class="stat-card">
+                <span>Absent Today</span>
+                <h2 id="absentCount">0</h2>
+            </div>
+            <div class="stat-card">
+                <span>Average Attendance</span>
+                <h2 id="averageAttendance">0%</h2>
+            </div>
+        </section>
+
+        <section class="panel" id="attendance">
+            <div class="section-heading">
+                <div>
+                    <h2>Mark Attendance</h2>
+                    <p>Select a status for each student.</p>
+                </div>
+                <button onclick="markAllPresent()">Mark All Present</button>
+            </div>
+
+            <div class="search-row">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by name or roll number..."
+                    oninput="renderStudents()"
+                >
+                <input type="date" id="attendanceDate">
+            </div>
+
+            <form id="studentForm" class="add-form">
+                <input type="text" id="studentName"
+                       placeholder="Student name" required>
+                <input type="text" id="rollNumber"
+                       placeholder="Roll number" required>
+                <button type="submit">+ Add Student</button>
+            </form>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Roll No.</th>
+                            <th>Student Name</th>
+                            <th>Present</th>
+                            <th>Absent</th>
+                            <th>Overall Attendance</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTable"></tbody>
+                </table>
+            </div>
+
+            <div class="bottom-actions">
+                <p id="message">Mark attendance and save your records.</p>
+                <button class="save-btn" onclick="saveAttendance()">
+                    Save Attendance
+                </button>
+            </div>
+        </section>
+
+        <section class="panel" id="students">
+            <h2>Attendance Summary</h2>
+            <p>Attendance percentage is calculated using saved records.</p>
+            <div id="summaryList" class="summary-list"></div>
+        </section>
+
+        <footer>© 2026 AttendEase | Attendance Management System</footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
